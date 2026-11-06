@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>创量批量投放</title>
+<style>
+  :root {
+    --brand: #0FDC78;
+    --brand-dark: #05994F;
+    --surface: #f5f5f7;
+    --text: #171717;
+    --text-muted: #6b6b70;
+    --border: #e5e5ea;
+    --danger: #E8463A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 380px;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    background: #fff;
+  }
+  .wrap { padding: 16px 18px 14px; }
+  h1 {
+    font-size: 15px; font-weight: 600; margin-bottom: 4px;
+  }
+  .sub {
+    font-size: 12px; color: var(--text-muted); margin-bottom: 14px;
+  }
+  label {
+    display: block; font-size: 12px; font-weight: 500;
+    color: var(--text-muted); margin-top: 10px; margin-bottom: 4px;
+  }
+  textarea, input[type=text] {
+    width: 100%; border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; font-size: 13px; font-family: inherit;
+    resize: vertical; outline: none;
+    transition: border-color .15s;
+  }
+  textarea { height: 68px; }
+  textarea:focus, input[type=text]:focus { border-color: var(--brand); }
+  .row {
+    display: flex; align-items: center; gap: 8px; margin-top: 10px;
+    font-size: 12px; color: var(--text-muted);
+  }
+  .row input[type=checkbox] { accent-color: var(--brand); }
+  .btns { display: flex; gap: 8px; margin-top: 16px; }
+  button {
+    flex: 1; padding: 9px 12px; border-radius: 6px;
+    font-size: 13px; font-weight: 500; font-family: inherit;
+    cursor: pointer; border: 1px solid transparent;
+    transition: all .15s;
+  }
+  .btn-primary {
+    background: var(--brand); color: #004D26; border-color: var(--brand);
+  }
+  .btn-primary:hover:not(:disabled) { background: var(--brand-dark); color: #fff; }
+  .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-secondary {
+    background: #fff; color: var(--text); border-color: var(--border);
+  }
+  .btn-secondary:hover { background: var(--surface); }
+  .status {
+    margin-top: 10px; padding: 8px 10px; border-radius: 6px;
+    background: var(--surface); font-size: 12px; color: var(--text-muted);
+    display: none;
+  }
+  .status.error { background: #FFF0EE; color: var(--danger); display: block; }
+  .status.ok { background: #E9FFF2; color: var(--brand-dark); display: block; }
+  .tip {
+    margin-top: 10px; font-size: 11px; color: var(--text-muted); line-height: 1.55;
+    padding-top: 10px; border-top: 1px solid var(--border);
+  }
+  .tag {
+    display: inline-block; padding: 1px 6px; border-radius: 4px;
+    font-size: 11px; background: var(--surface); color: var(--text-muted);
+    margin-right: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>创量批量投放助手 <span id="ver" style="font-size:11px;font-weight:400;color:#6B7280;">v1.0.0</span></h1>
+  <p class="sub">统一模式快捷入口；多账户分剧和售卖策略请使用页面浮动面板</p>
+
+  <label>账户 ID（支持多账户，用逗号/空格/换行分开）</label>
+  <textarea id="accounts" placeholder="10000001&#10;10000002"></textarea>
+
+  <label>短剧名（精确搜索关键词）</label>
+  <input type="text" id="drama" placeholder="示例短剧">
+
+  <label>商品库名称</label>
+  <input type="text" id="library" placeholder="例如：示例商品库">
+
+  <label>素材目录名称</label>
+  <input type="text" id="materialFolder" placeholder="例如：投手-示例">
+
+  <label class="row">
+    <input type="checkbox" id="copyTemplate" checked>
+    自动点「复用」沿用上次的定向/出价/预算模板
+  </label>
+
+  <div class="btns">
+    <button class="btn-primary" id="startBtn">▶ 开始执行</button>
+    <button class="btn-secondary" id="checkBtn">自检</button>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <p class="tip">
+    <span class="tag">商品库可配置</span>
+    <span class="tag">素材目录可配置</span>
+    <span class="tag">不自动提交审核</span>
+    <br>
+    需要手动在创量页面上确认后再点扩展。跑完停在"生成预览"，不自动提交审核。
+  </p>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
+

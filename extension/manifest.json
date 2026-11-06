@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "创量批量投放助手",
+  "version": "1.0.0",
+  "description": "辅助完成创量平台短剧广告草稿创建：支持统一模式、多账户分剧、可选售卖策略，并在生成预览后交由人工检查。",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://*.mobgi.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "创量批量投放"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.mobgi.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
+

@@ -1,0 +1,16 @@
+profile/
+logs/
+__pycache__/
+*.pyc
+config.json
+.screenshots/
+.trae-html-share-packages/
+top_zoom.png
+*.log
+*.tmp
+*.bak
+*.zip
+*.xls
+*.xlsx
+Thumbs.db
+.DS_Store

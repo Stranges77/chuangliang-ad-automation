@@ -1,0 +1,7 @@
+{
+  "chuangliang_base_url": "https://promotion.mobgi.com/",
+  "timeout_ms": 15000,
+  "page_timeout_ms": 30000,
+  "profile_dir": "./profile",
+  "shuffle_times": 3
+}
