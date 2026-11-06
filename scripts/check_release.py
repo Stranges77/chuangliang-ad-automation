@@ -51,9 +51,9 @@ def main() -> None:
 
     code_files = [CONTENT, POPUP_JS, POPUP_HTML, RUN_PY]
     banned = {
-        "fixed material folder variable": "var MATERIAL_FOLDER =",
-        "webdriver override": "navigator.webdriver",
-        "automation-control flag": "AutomationControlled",
+        "fixed material folder variable": "var MATERIAL_" + "FOLDER =",
+        "webdriver override": "navigator" + ".webdriver",
+        "automation-control flag": "Automation" + "Controlled",
     }
     joined = "\n".join(read(path) for path in code_files)
     for label, token in banned.items():
